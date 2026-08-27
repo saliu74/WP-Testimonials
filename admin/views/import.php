@@ -162,6 +162,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					<p>
 						<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=testimonial' ) ); ?>" class="button button-primary"><?php esc_html_e( 'View All Testimonials', 'testimonials-manager' ); ?></a>
+						<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=testimonial&page=tm-testimonials-shortcodes' ) ); ?>" class="button"><?php esc_html_e( 'Get the Shortcode to Display Them', 'testimonials-manager' ); ?></a>
 						<button type="button" class="button" id="tm-import-another"><?php esc_html_e( 'Import Another File', 'testimonials-manager' ); ?></button>
 					</p>
 				</div>

@@ -40,6 +40,15 @@ class TM_Admin {
 
 		add_submenu_page(
 			'edit.php?post_type=' . TM_Post_Type::POST_TYPE,
+			__( 'Testimonials Shortcodes', 'testimonials-manager' ),
+			__( 'Shortcodes', 'testimonials-manager' ),
+			'edit_posts',
+			'tm-testimonials-shortcodes',
+			array( $this, 'render_shortcodes_page' )
+		);
+
+		add_submenu_page(
+			'edit.php?post_type=' . TM_Post_Type::POST_TYPE,
 			__( 'Testimonials Settings', 'testimonials-manager' ),
 			__( 'Settings', 'testimonials-manager' ),
 			'manage_options',
@@ -58,6 +67,27 @@ class TM_Admin {
 		$settings_link = '<a href="' . esc_url( admin_url( 'edit.php?post_type=testimonial&page=tm-testimonials-settings' ) ) . '">' . esc_html__( 'Settings', 'testimonials-manager' ) . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
+	}
+
+	/**
+	 * Render the Shortcodes reference page — ready-to-copy examples built
+	 * from the site's actual categories and current testimonial count, so
+	 * the examples are immediately usable rather than generic.
+	 */
+	public function render_shortcodes_page() {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'testimonials-manager' ) );
+		}
+
+		$categories = get_terms( array( 'taxonomy' => 'testimonial_category', 'hide_empty' => false ) );
+		if ( is_wp_error( $categories ) ) {
+			$categories = array();
+		}
+
+		$counts       = wp_count_posts( TM_Post_Type::POST_TYPE );
+		$published    = isset( $counts->publish ) ? (int) $counts->publish : 0;
+
+		include TM_PLUGIN_DIR . 'admin/views/shortcodes.php';
 	}
 
 	/**
@@ -107,9 +137,11 @@ class TM_Admin {
 	}
 
 	/**
-	 * A one-time friendly nudge pointing new users to the Import screen —
-	 * dismissible, shown only on the All Testimonials screen when there
-	 * are zero testimonials yet.
+	 * A dismissible admin notice on the All Testimonials screen. Before
+	 * any testimonials exist it nudges toward creating/importing content;
+	 * once testimonials exist, it instead points to the Shortcodes page —
+	 * the plugin has no other UI surface that tells someone how to
+	 * actually display what they've created.
 	 */
 	public function maybe_show_settings_notice() {
 		$screen = get_current_screen();
@@ -125,19 +157,27 @@ class TM_Admin {
 		$total = isset( $count->publish ) ? (int) $count->publish : 0;
 		$total += isset( $count->draft ) ? (int) $count->draft : 0;
 
-		if ( $total > 0 ) {
-			return;
-		}
+		$shortcodes_url = admin_url( 'edit.php?post_type=testimonial&page=tm-testimonials-shortcodes' );
 		?>
 		<div class="notice notice-info">
 			<p>
-				<?php
-				printf(
-					/* translators: %s: link to the Import page */
-					wp_kses_post( __( 'Welcome to Testimonials Manager! Add your first testimonial manually, or %s from a spreadsheet.', 'testimonials-manager' ) ),
-					'<a href="' . esc_url( admin_url( 'edit.php?post_type=testimonial&page=tm-testimonials-import' ) ) . '">' . esc_html__( 'import in bulk', 'testimonials-manager' ) . '</a>'
-				);
-				?>
+				<?php if ( $total > 0 ) : ?>
+					<?php
+					printf(
+						/* translators: %s: link to the Shortcodes page */
+						wp_kses_post( __( 'Ready to display your testimonials? Grab a ready-to-use shortcode from the %s page and paste it into any page or post.', 'testimonials-manager' ) ),
+						'<a href="' . esc_url( $shortcodes_url ) . '">' . esc_html__( 'Shortcodes', 'testimonials-manager' ) . '</a>'
+					);
+					?>
+				<?php else : ?>
+					<?php
+					printf(
+						/* translators: %s: link to the Import page */
+						wp_kses_post( __( 'Welcome to Testimonials Manager! Add your first testimonial manually, or %s from a spreadsheet.', 'testimonials-manager' ) ),
+						'<a href="' . esc_url( admin_url( 'edit.php?post_type=testimonial&page=tm-testimonials-import' ) ) . '">' . esc_html__( 'import in bulk', 'testimonials-manager' ) . '</a>'
+					);
+					?>
+				<?php endif; ?>
 			</p>
 		</div>
 		<?php

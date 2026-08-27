@@ -110,6 +110,8 @@ Large files are processed in batches of 100 rows via background AJAX requests, s
 
 ## Shortcode reference
 
+Go to **Testimonials → Shortcodes** for a ready-to-copy reference screen built from your site's actual categories — every example has a **Copy** button, so you don't need to memorize any of this. Paste the copied shortcode into a Shortcode block (or the Classic Editor) on any page or post.
+
 ```
 [testimonials]
 ```

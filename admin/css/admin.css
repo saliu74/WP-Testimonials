@@ -136,3 +136,35 @@
 	font-family: Consolas, Monaco, monospace;
 	font-size: 12px;
 }
+
+/* Shortcodes reference page */
+.tm-shortcode-examples {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	gap: 16px;
+	margin-bottom: 24px;
+}
+.tm-shortcode-example h2 {
+	margin-top: 0;
+}
+.tm-shortcode-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 12px;
+}
+.tm-shortcode-code {
+	background: #f0f0f1;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 8px 10px;
+	flex: 1;
+	overflow-x: auto;
+	white-space: nowrap;
+	font-size: 12px;
+}
+.tm-copy-shortcode.is-copied {
+	background: #00a32a;
+	border-color: #00a32a;
+	color: #fff;
+}

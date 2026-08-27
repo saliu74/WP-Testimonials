@@ -394,4 +394,38 @@
 			$uploadBtn.prop( 'disabled', true );
 		}
 	} );
+
+	/* -------------------------------------------------------------
+	 * Shortcodes reference page — copy-to-clipboard buttons.
+	 * ----------------------------------------------------------- */
+	$( function () {
+		$( '.tm-copy-shortcode' ).on( 'click', function () {
+			var $btn = $( this );
+			var text = $btn.data( 'shortcode' );
+
+			var restoreLabel = $btn.text();
+			var markCopied = function () {
+				$btn.addClass( 'is-copied' ).text( 'Copied!' );
+				setTimeout( function () {
+					$btn.removeClass( 'is-copied' ).text( restoreLabel );
+				}, 1500 );
+			};
+
+			if ( navigator.clipboard && navigator.clipboard.writeText ) {
+				navigator.clipboard.writeText( text ).then( markCopied );
+				return;
+			}
+
+			// Fallback for browsers/contexts without the Clipboard API.
+			var $temp = $( '<textarea>' ).val( text ).css( { position: 'fixed', top: '-1000px' } ).appendTo( 'body' );
+			$temp.trigger( 'select' );
+			try {
+				document.execCommand( 'copy' );
+				markCopied();
+			} catch ( err ) {
+				window.prompt( 'Copy this shortcode:', text ); // eslint-disable-line no-alert
+			}
+			$temp.remove();
+		} );
+	} );
 } )( jQuery );
