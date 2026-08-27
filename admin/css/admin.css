@@ -1,0 +1,138 @@
+/* Testimonials Manager — Admin Styles */
+
+.tm-wrap .title {
+	margin-top: 2em;
+}
+
+/* Meta boxes */
+.tm-meta-table th {
+	width: 200px;
+}
+.tm-required {
+	color: #d63638;
+}
+.tm-meta-sub {
+	color: #646970;
+	font-style: italic;
+}
+
+/* Import wizard */
+.tm-import-app {
+	max-width: 900px;
+}
+
+.tm-import-steps {
+	display: flex;
+	list-style: none;
+	margin: 20px 0;
+	padding: 0;
+	border-bottom: 1px solid #dcdcde;
+}
+.tm-import-steps .tm-step {
+	padding: 10px 16px;
+	color: #646970;
+	font-weight: 600;
+	border-bottom: 3px solid transparent;
+}
+.tm-import-steps .tm-step.is-active {
+	color: #2271b1;
+	border-bottom-color: #2271b1;
+}
+.tm-import-steps .tm-step.is-complete {
+	color: #00a32a;
+}
+
+.tm-card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+	padding: 20px 24px;
+	margin-bottom: 20px;
+}
+.tm-card-secondary {
+	background: #f6f7f7;
+}
+
+.tm-dropzone {
+	border: 2px dashed #8c8f94;
+	border-radius: 6px;
+	padding: 40px 20px;
+	text-align: center;
+	cursor: pointer;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.tm-dropzone:hover,
+.tm-dropzone:focus,
+.tm-dropzone.is-dragover {
+	border-color: #2271b1;
+	background: #f0f6fc;
+	outline: none;
+}
+
+.tm-selected-file {
+	font-weight: 600;
+}
+
+.tm-error-text {
+	color: #d63638;
+	font-weight: 600;
+}
+
+.tm-spinner.is-active {
+	visibility: visible;
+	float: none;
+	margin: 4px 8px;
+}
+
+.tm-table-scroll {
+	overflow-x: auto;
+	margin-bottom: 16px;
+}
+.tm-mapping-table th,
+.tm-mapping-table td {
+	padding: 8px 10px;
+	white-space: nowrap;
+	border: 1px solid #dcdcde;
+}
+.tm-mapping-table select {
+	min-width: 160px;
+}
+.tm-mapping-table td.tm-cell-truncate {
+	max-width: 220px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.tm-mapping-table .tm-required-field {
+	color: #d63638;
+}
+
+.tm-progress-bar-track {
+	background: #e5e5e5;
+	border-radius: 999px;
+	height: 20px;
+	overflow: hidden;
+	margin: 16px 0 8px;
+}
+.tm-progress-bar-fill {
+	background: #2271b1;
+	height: 100%;
+	transition: width 0.3s ease;
+}
+
+.tm-summary-list {
+	display: flex;
+	gap: 24px;
+	list-style: none;
+	padding: 0;
+	font-size: 15px;
+}
+.tm-summary-list strong {
+	display: block;
+	font-size: 22px;
+}
+
+#tm-error-report textarea {
+	font-family: Consolas, Monaco, monospace;
+	font-size: 12px;
+}

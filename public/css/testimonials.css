@@ -1,0 +1,151 @@
+/**
+ * Testimonials Manager — base frontend styles.
+ *
+ * Every selector is namespaced with `tm-` to avoid clashing with theme
+ * classes such as .card, .container, .title, .review, etc.
+ * Customize appearance by overriding these CSS custom properties from
+ * your theme's stylesheet or the Customizer additional CSS box.
+ */
+
+.tm-testimonials {
+	--tm-card-background: #ffffff;
+	--tm-card-border: #e5e7eb;
+	--tm-text-color: #1f2937;
+	--tm-muted-color: #6b7280;
+	--tm-accent-color: #2563eb;
+	--tm-star-color: #f5a623;
+	--tm-card-radius: 12px;
+	--tm-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+	--tm-avatar-size: 48px;
+	--tm-content-align: left;
+
+	box-sizing: border-box;
+	color: var(--tm-text-color);
+	font-size: 16px;
+	line-height: 1.6;
+}
+
+.tm-testimonials *,
+.tm-testimonials *::before,
+.tm-testimonials *::after {
+	box-sizing: inherit;
+}
+
+.tm-testimonial-card {
+	background: var(--tm-card-background);
+	border: 1px solid var(--tm-card-border);
+	border-radius: var(--tm-card-radius);
+	box-shadow: var(--tm-card-shadow);
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	height: 100%;
+	text-align: var(--tm-content-align);
+}
+
+.tm-testimonial-card.tm-align-center {
+	align-items: center;
+}
+
+.tm-rating {
+	display: inline-flex;
+	gap: 2px;
+	font-size: 16px;
+	line-height: 1;
+}
+.tm-star-filled {
+	color: var(--tm-star-color);
+}
+.tm-star-empty {
+	color: var(--tm-card-border);
+}
+
+.tm-testimonial-content {
+	color: var(--tm-text-color);
+	font-size: 1rem;
+}
+.tm-testimonial-content p:last-child {
+	margin-bottom: 0;
+}
+
+.tm-testimonial-author {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: auto;
+}
+.tm-align-center .tm-testimonial-author {
+	flex-direction: column;
+	text-align: center;
+}
+
+.tm-author-image {
+	flex-shrink: 0;
+}
+.tm-avatar {
+	width: var(--tm-avatar-size);
+	height: var(--tm-avatar-size);
+	border-radius: 50%;
+	object-fit: cover;
+	display: block;
+}
+.tm-avatar-placeholder {
+	width: var(--tm-avatar-size);
+	height: var(--tm-avatar-size);
+	border-radius: 50%;
+	background: var(--tm-accent-color);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.tm-author-info {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.4;
+}
+.tm-author-name {
+	font-weight: 600;
+	color: var(--tm-text-color);
+	text-decoration: none;
+}
+.tm-author-name:hover {
+	color: var(--tm-accent-color);
+}
+.tm-author-role,
+.tm-author-location {
+	color: var(--tm-muted-color);
+	font-size: 0.875rem;
+}
+
+.tm-no-testimonials {
+	color: var(--tm-muted-color);
+	font-style: italic;
+}
+
+/* Respect user motion preferences everywhere in the plugin. */
+@media (prefers-reduced-motion: reduce) {
+	.tm-testimonials * {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}

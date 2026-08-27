@@ -1,0 +1,108 @@
+/**
+ * Testimonials Manager — carousel layout styles.
+ */
+
+.tm-testimonial-carousel {
+	position: relative;
+	padding: 0 48px;
+}
+
+.tm-carousel-viewport {
+	overflow: hidden;
+}
+
+.tm-carousel-track {
+	display: flex;
+	transition: transform 0.4s ease;
+	will-change: transform;
+}
+
+.tm-carousel-slide {
+	flex: 0 0 calc(100% / var(--tm-slides, 3));
+	max-width: calc(100% / var(--tm-slides, 3));
+	padding: 4px 12px;
+	display: flex;
+}
+
+.tm-carousel-slide .tm-testimonial-card {
+	width: 100%;
+}
+
+.tm-carousel-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: #fff;
+	border: 1px solid var(--tm-card-border, #e5e7eb);
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+	color: var(--tm-text-color, #1f2937);
+}
+.tm-carousel-arrow:hover,
+.tm-carousel-arrow:focus {
+	background: var(--tm-accent-color, #2563eb);
+	color: #fff;
+	outline: none;
+}
+.tm-carousel-prev { left: 0; }
+.tm-carousel-next { right: 0; }
+
+.tm-carousel-playpause {
+	position: absolute;
+	bottom: -36px;
+	right: 48px;
+	background: transparent;
+	border: 1px solid var(--tm-card-border, #e5e7eb);
+	border-radius: 4px;
+	padding: 4px 10px;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.tm-carousel-dots {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	margin-top: 20px;
+}
+.tm-carousel-dots button {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: none;
+	padding: 0;
+	background: var(--tm-card-border, #e5e7eb);
+	cursor: pointer;
+}
+.tm-carousel-dots button[aria-selected="true"] {
+	background: var(--tm-accent-color, #2563eb);
+}
+.tm-carousel-dots button:focus {
+	outline: 2px solid var(--tm-accent-color, #2563eb);
+	outline-offset: 2px;
+}
+
+/* Responsive slides-per-view, driven by data-slides-* attributes via
+   inline custom property set in JS (--tm-slides). Fallback breakpoints
+   below guarantee sane behavior even before JS runs / if JS fails. */
+@media (max-width: 1024px) and (min-width: 641px) {
+	.tm-testimonial-carousel {
+		--tm-slides: var(--tm-slides-tablet, 2);
+	}
+}
+@media (max-width: 640px) {
+	.tm-testimonial-carousel {
+		--tm-slides: var(--tm-slides-mobile, 1);
+		padding: 0 40px;
+	}
+	.tm-carousel-arrow {
+		width: 32px;
+		height: 32px;
+	}
+}

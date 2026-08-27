@@ -1,0 +1,60 @@
+/**
+ * Testimonials Manager — grid layout styles.
+ */
+
+.tm-testimonial-grid .tm-grid-items {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+}
+
+.tm-testimonial-grid.tm-columns-1 .tm-grid-items { grid-template-columns: repeat(1, 1fr); }
+.tm-testimonial-grid.tm-columns-2 .tm-grid-items { grid-template-columns: repeat(2, 1fr); }
+.tm-testimonial-grid.tm-columns-3 .tm-grid-items { grid-template-columns: repeat(3, 1fr); }
+.tm-testimonial-grid.tm-columns-4 .tm-grid-items { grid-template-columns: repeat(4, 1fr); }
+.tm-testimonial-grid.tm-columns-5 .tm-grid-items { grid-template-columns: repeat(5, 1fr); }
+.tm-testimonial-grid.tm-columns-6 .tm-grid-items { grid-template-columns: repeat(6, 1fr); }
+
+/* Tablet: never show more than 2 columns regardless of the configured value. */
+@media (max-width: 782px) {
+	.tm-testimonial-grid .tm-grid-items {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+}
+
+/* Mobile: always a single column. */
+@media (max-width: 480px) {
+	.tm-testimonial-grid .tm-grid-items {
+		grid-template-columns: 1fr !important;
+	}
+}
+
+.tm-grid-pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	margin-top: 28px;
+}
+.tm-page-link {
+	background: var(--tm-accent-color, #2563eb);
+	color: #fff;
+	padding: 8px 16px;
+	border-radius: 6px;
+	text-decoration: none;
+	font-size: 0.9rem;
+}
+.tm-page-link:hover,
+.tm-page-link:focus {
+	opacity: 0.9;
+	color: #fff;
+}
+.tm-page-status {
+	color: var(--tm-muted-color, #6b7280);
+	font-size: 0.9rem;
+}
+
+.tm-testimonial-grid.is-loading .tm-grid-items {
+	opacity: 0.5;
+	pointer-events: none;
+}
